@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+## Console Script
+
+motd() { 
+  echo "\n## Bash Console ##" && env && echo
+}
+
+## Run motd.
+motd
+
+## Open console.
+bash
