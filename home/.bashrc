@@ -2,7 +2,7 @@
 ## Feel free to add your own aliases and shortcuts!
 
 ## Configure bitcoin-cli.
-alias bcli='bitcoin-cli --chain=$NETWORK'
+alias bcli="bitcoin-cli --chain=$NETWORK"
 
 ## Useful for checking open sockets.
 alias listen='lsof -i -P -n | grep LISTEN'
@@ -14,6 +14,6 @@ debug() {
 
 ## Get QR codes for exporting complex strings.
 qrcode() {
-  [ "$#" -eq 0 ] && input="$(read var && echo $var)" || input="$1" 
+  [ "$#" -ne 0 ] && input="$1" || input="$(tr -d '\0' < /dev/stdin)"
   echo && qrencode -m 2 -t "UTF8" $input && printf "${input}\n\n"
 }

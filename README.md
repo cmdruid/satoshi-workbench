@@ -1,4 +1,6 @@
-# Bitcoin Workbench
+# Satoshi Workbench
+
+A docker workbench environment, pre-configured for running bitcoind.
 
 ## How to Setup
 ```sh
