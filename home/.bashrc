@@ -13,6 +13,7 @@ debug() {
 }
 
 ## Get QR codes for exporting complex strings.
-qrcode() { 
-  echo && printf $1 | qrencode -m 2 -t "UTF8" && echo
+qrcode() {
+  [ "$#" -eq 0 ] && input="$(read var && echo $var)" || input="$1" 
+  echo && qrencode -m 2 -t "UTF8" $input && printf "${input}\n\n"
 }

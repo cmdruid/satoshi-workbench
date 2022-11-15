@@ -16,9 +16,6 @@ COPY home /root/home/
 RUN BASHRC="$HOME/.bashrc" \
   && printf "\n[ -e $BASHRC ] && source $BASHRC\n\n" >> /root/.bashrc
 
-## Ensure bin files are executable.
-RUN for FILE in $HOME/bin/* ; do echo $FILE && chmod a+x $FILE; done
-
 ## Uncomment this if you want to wipe all repository lists.
 #RUN rm -rf /var/lib/apt/lists/*
 
