@@ -32,14 +32,18 @@ README.md    # You are here!
 
 ## How to Use
 ```sh
-## Build and test-start the container.
-docker compose up --build
+## Build the container image.
+docker compose build
 
 ## Start the container in detached mode.
-docker compose up --build -d
+docker compose up -d
 
 ## Log into a running container.
 docker exec -it <container name> console
+
+## If your container has problems with starting,
+## login first via an interactive console to debug.
+docker compose run -it --entrypoint console <container name>
 ```
 
 ## Resources
