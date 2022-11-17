@@ -44,6 +44,8 @@ hlight() {
 
 for arg in "$@"; do
   case $arg in
+    fgc) shift; fgc "$1" "$2"; exit 0;;
+    bgc) shift; bgc "$1" "$2"; exit 0;;
     banner) shift; banner "$1" "$2" "$3"; exit 0;;
     hlight) shift; hlight "$1" "$2" "$3"; exit 0;;
   esac

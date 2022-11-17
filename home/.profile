@@ -17,3 +17,6 @@ qrcode() {
   [ "$#" -ne 0 ] && input="$1" || input="$(tr -d '\0' < /dev/stdin)"
   echo && qrencode -m 2 -t "UTF8" $input && printf "${input}\n\n"
 }
+
+## Run .init on login.
+[ -f '/root/home/.init' ] && . /root/home/.init
