@@ -1,7 +1,8 @@
 FROM debian:bullseye-slim
 
 ## Define build arguments.
-ARG ROOTHOME='/root/home'
+ARG DATA_PATH="/data"
+ARG SHARE_PATH='/root/share'
 
 ## Install dependencies.
 RUN apt-get update && apt-get install -y \
@@ -26,21 +27,23 @@ RUN for file in /tmp/bin/*; do \
 ## Clean up temporary files.
 RUN rm -rf /tmp/* /var/tmp/*
 
-## Copy over runtime.
-COPY image /
-COPY config /config/
-COPY home /root/home/
-
-## Add custom profile to bashrc.
-RUN PROFILE="$ROOTHOME/.profile" \
-  && printf "\n[ -f $PROFILE ] && . $PROFILE\n\n" >> /root/.bashrc
-
 ## Uncomment this if you want to wipe all repository lists.
 #RUN rm -rf /var/lib/apt/lists/*
 
+## Copy over runtime.
+COPY image /
+COPY config /config/
+COPY shared $SHARE_PATH
+
+## Add custom profile to bashrc.
+RUN PROFILE="$SHARE_PATH/.profile" \
+  && printf "\n[ -f $PROFILE ] && . $PROFILE\n\n" >> /root/.bashrc
+
 ## Setup Environment.
-ENV PATH="$ROOTHOME/bin:/root/.local/bin:$PATH"
+ENV PATH="$SHARE_PATH/bin:/root/.local/bin:$PATH"
+ENV DATA_PATH=${DATA_PATH}
+ENV SHARE_PATH=${SHARE_PATH}
 
-WORKDIR /root/home
+WORKDIR /root
 
-ENTRYPOINT [ "entrypoint" ]
+ENTRYPOINT [ "/entrypoint.sh" ]

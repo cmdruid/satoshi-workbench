@@ -4,23 +4,13 @@ services:
   bitcoind:
     build: .
     image: bitcoind:latest
-    ## entrypoint: console
-    ## command: --prune=1000
     container_name: bitcoind
     env_file: .env
     hostname: bitcoind
     init: true
-    networks:
-      - net
-    ports:
-      - 8333:8333
     restart: unless-stopped
     tty: true
     volumes:
       - ./config:/config:ro
-      - ./data:/root/.bitcoin:rw
-      - ./home:/root/home:rw
-
-networks:
-  net:
-    name: 'bitcoin'
+      - ./data:/data:rw
+      - ./shared:/root/share:rw

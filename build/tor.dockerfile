@@ -2,7 +2,7 @@ FROM debian:bullseye-slim AS build-stage
 
 ARG BIN_NAME="tor"
 
-ENV BUILD_BRANCH="0.4.7.8"
+ENV BUILD_BRANCH="0.4.7.13"
 
 ENV REPO_URL="https://dist.torproject.org"
 ENV FILENAME="${BIN_NAME}-${BUILD_BRANCH}.tar.gz"
