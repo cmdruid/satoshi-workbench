@@ -21,11 +21,12 @@ export REST_PORT
 export ARGS_FILE="$DATA_PATH/.args"
 export HOST_FILE="$DATA_PATH/.hostname"
 
+[ ! -f "/root/.bitcoin" ]     && mkdir -p /root/.bitcoin
 [ ! -f "$DATA_PATH/bitcoin" ] && mkdir -p $DATA_PATH/bitcoin
 [ ! -f "$ARGS_FILE" ] && touch $ARGS_FILE
 [ ! -f "$HOST_FILE" ] && printf "$(hostname -I | tr -d ' ')" > "$HOST_FILE"
 
-[ -f "$CONF" ] && ln -s $CONF ~/.bitcoin/bitcoin.conf
+[ -f "$CONF" ] && ln -s "$CONF" /root/.bitcoin/bitcoin.conf
 
 ###############################################################################
 # Methods
