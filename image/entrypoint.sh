@@ -25,6 +25,8 @@ export HOST_FILE="$DATA_PATH/.hostname"
 [ ! -f "$ARGS_FILE" ] && touch $ARGS_FILE
 [ ! -f "$HOST_FILE" ] && printf "$(hostname -I | tr -d ' ')" > "$HOST_FILE"
 
+[ -f "$CONF" ] && ln -s $CONF ~/.bitcoin/bitcoin.conf
+
 ###############################################################################
 # Methods
 ###############################################################################
